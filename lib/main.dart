@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutterapp/character/data/character_repository.dart';
+import 'package:flutterapp/character/data/model/character.dart';
 
 import 'counter.dart';
 
@@ -36,6 +38,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final counter = Counter();
+  Character character;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,14 +60,26 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               'You have pushed the button this many times:',
             ),
-            Observer(
-              builder: (_) {
-                return Text(
-                  '${counter.value}',
-                  style: Theme.of(context).textTheme.headline4,
-                );
+            FlatButton(
+              color: Colors.amber,
+              splashColor: Colors.pink,
+              highlightColor: Colors.green,
+              child: Text("Buscar Personagem"),
+              onPressed: () {
+                CharacterRepository().call(counter.value).then((value) {
+                  setState(() {
+                    character = value;
+                  });
+                });
               },
             ),
+            Text(
+              '${character?.name}',
+              style: Theme.of(context).textTheme.headline4,
+            ),
+            Observer(builder: (_) {
+              return Text('${counter.value}');
+            }),
           ],
         ),
       ),
