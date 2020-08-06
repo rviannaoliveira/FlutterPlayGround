@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutterapp/character/data/character_repository.dart';
 import 'package:flutterapp/character/data/model/character.dart';
+import 'package:flutterapp/character/list.dart';
 
 import 'counter.dart';
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+        return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -66,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
               highlightColor: Colors.green,
               child: Text("Buscar Personagem"),
               onPressed: () {
-                CharacterRepository().call(counter.value).then((value) {
+                CharacterRepository().callId(counter.value).then((value) {
                   setState(() {
                     character = value;
                   });
@@ -80,6 +81,17 @@ class _MyHomePageState extends State<MyHomePage> {
             Observer(builder: (_) {
               return Text('${counter.value}');
             }),
+            FlatButton(
+              color: Colors.blue,
+              splashColor: Colors.black,
+              child: Text("Go list"),
+              onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ListPage()),
+                );
+              },
+            )
           ],
         ),
       ),
