@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../lib/main.dart';
+import '../lib/main/main_screen.dart';
 
 void main() {
   testWidgets('widget should start with 0', (WidgetTester tester) async {

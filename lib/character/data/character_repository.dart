@@ -2,9 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:flutterapp/character/data/model/character.dart';
 
 class CharacterRepository {
+  final Dio dio;
+
+  CharacterRepository({this.dio});
+
   Future<Character> callId(int value) {
     final url = "https://rickandmortyapi.com/api/character/$value";
-    return Dio().get(url).then((value) => Character.fromJson(value.data));
+    return dio.get(url).then((value) => Character.fromJson(value.data));
   }
 
   Future<List<Character>> getList() {

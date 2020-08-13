@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import '../lib/counter.dart';
+import '../lib/main/main_view_model.dart';
 
 void main() {
   test('it should increment the value', () {
